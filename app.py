@@ -47,9 +47,9 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 
 app.secret_key = os.urandom(24)
-stripe.api_key = 'REDACTED_STRIPE_KEY'
+stripe.api_key = os.getenv("STRIPE_API_KEY")
 
-openai.api_key = 'REDACTED_OPENAI_KEY'
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app.config['SESSION_TYPE'] = 'redis'
 app.config['SESSION_PERMANENT'] = False

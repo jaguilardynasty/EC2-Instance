@@ -1,9 +1,10 @@
+import os
 # import openai
 # import asyncio
 # from openai.embeddings_utils import get_embedding
 
 # # Set your OpenAI API key here
-# openai.api_key = "REDACTED_OPENAI_KEY"
+# openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # async def get_embeddings(sentences, engine='text-embedding-ada-002'):
 #     loop = asyncio.get_running_loop()

@@ -6,3 +6,10 @@ __pycache__/
 venv/
 node_modules/
 .DS_Store
+.env
+.aws/
+*.pem
+__pycache__/
+venv/
+node_modules/
+.DS_Store

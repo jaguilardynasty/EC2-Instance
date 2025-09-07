@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Elements Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: "Karla", sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            display: block;
+        }
+        .form-container-confirmation {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            display: none;
+        }
+        .StripeElement {
+            box-sizing: border-box;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: rgb(145, 5, 5);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: rgb(129, 7, 7);
+        }
+        #card-errors {
+            color: #fa755a;
+        }
+        h1{
+            display: block;
+            font-size: 16px;
+        }
+        .pay{
+            text-decoration: underline;
+            color: white;
+            font-size: 18px;
+        }
+        .one-time{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="form-container" class="form-container"> 
+       <div id="h1"> <h1>Get Premium for a one time charge of <span class="one-time"></span> <span class='pay'>$6</span>.</h1></div>
+        
+        <form id="payment-form">
+            <div id="card-element">
+                <!-- Stripe.js injects the Card Element here -->
+            </div>
+            <p> $6.00 USD</p>
+            <button id="submit">Submit Payment</button>
+            <div id="card-errors" role="alert"></div>
+        </form>
+       
+    </div>
+    <div id="form-container-confirmation" class="form-container-confirmation"> 
+        <div id="confirmation-message">
+            <h2>Payment confirmed. All red flags are now available to you, for any policy you wish. Welcome.</h2>
+            <button id="return-home">Return to Homepage</button>
+        </div>
+    </div>
+
+    <script>
+        var stripe = Stripe('pk_live_51Pv9M0ASJp0chswKmBDPfSCY1CBidoVk4ooe7CtTTlVfAlAm2w5LDIVLxoJ96upG6MeaYzPa9IrVRIm9sHXEoYzx00tnnAR75K');  // Replace with your Stripe publishable key
+        var elements = stripe.elements();
+
+        // Create an instance of the card Element
+        var card = elements.create('card');
+
+        // Add an instance of the card Element into the `card-element` div
+        card.mount('#card-element');
+
+        // Handle form submission
+        var form = document.getElementById('payment-form');
+        var submitButton = document.getElementById('submit');
+
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            event.preventDefault();
+ 
+            submitButton.disabled = true;
+
+            // Create a PaymentIntent on the server-side
+            fetch('/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                return stripe.confirmCardPayment(data.clientSecret, {
+                    payment_method: {
+                        card: card,
+                    }
+                });
+            })
+            .then(function(result) {
+                if (result.error) {
+                    // Display error.message in #card-errors
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // The payment succeeded!
+                    if (result.paymentIntent.status === 'succeeded') {
+                        // Call the server to mark the user as premium
+                        fetch('/payment-success', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(function(response) {
+                            return response.json();
+                        })
+                        .then(function(data) {
+                            console.log(data.message);
+                        });
+
+                        // Hide the payment form and show the confirmation message
+                        document.querySelector('.form-container').style.display = 'none';
+                        document.querySelector('.form-container-confirmation').style.display = 'block';
+
+                        // Add functionality to the "Return to Homepage" button
+                        document.getElementById('return-home').addEventListener('click', function() {
+                            window.location.href = '/';  // Redirect to the homepage
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

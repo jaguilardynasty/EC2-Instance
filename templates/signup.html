@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        /* Same style as the login page */
+        @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: "Karla", sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            font-weight: 200;
+            background-color: black;
+            padding: 30px;
+            border: 0.5px white solid;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 300px;
+        }
+        input[type="email"], input[type="password"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        input[type="email"], input[type="password"] {
+            background-color: #333;
+            color: #fff;
+        }
+        button {
+            background-color: rgb(145, 5, 5);
+            color: white;
+            font-weight: 200;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #cc3737;
+        }
+        .link {
+            color: #92b4c9;
+            text-decoration: underline;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        p{
+          font-size: 14px;
+        }
+        h1{
+          font-weight: 200;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Create Account</h1>
+        <form action="{{ url_for('signup') }}" method="post">
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="password" id="password" name="password" placeholder="Create Password" required>
+            <label for="remember">
+                <input type="checkbox" id="remember" name="remember" checked> Remember Me
+            </label>
+            <button type="submit">Submit & Go to Payment</button>
+        </form>
+        <p>Already have an account? <a href="{{ url_for('login') }}" class="link">Log in here</a>.</p>
+    </div>
+</body>
+</html>

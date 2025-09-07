@@ -1,0 +1,228 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: rgb(0, 0, 0); /* Adjust the background color as needed */
+  color: rgb(245, 245, 245); /* Adjust text color for readability */
+}
+
+
+/* Ensure the main container spans horizontally */
+.results-page-container {
+  display: flex;
+  flex-direction: row; /* Align children horizontally */
+  justify-content: space-between; /* Space out the child elements */
+  width: 95%; /* Take the full width to utilize the space */
+  padding: 20px; /* Add some padding around the contents */
+}
+
+.results{
+  width: 10%;
+  color:rgb(183, 183, 183);
+}
+.results-container {
+  margin-top: 5px;
+  margin-left: 90px;
+  width: 90%;
+  /* Additional styling specific to results container */
+}
+
+.original-container {
+  color: rgba(77, 77, 77, 0.818);
+  font-size: 9px;
+  background-color: rgb(244, 244, 244); /* Or any background color you prefer */
+  width: 100%; /* Adjust the width as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 2px solid #000; /* Add a border around the container */
+  border-radius: 15px; /* Rounded corners */
+  margin-right: 1px;
+  margin-left: 10px; /* Ensure some space between this container and others */
+  padding: 3px; /* Add some padding inside the container for content spacing */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  height: 90vh; /* Adjust the height as needed, vh units make it responsive */
+}
+
+.original-container pre {
+  padding-left: -22px;
+  white-space: pre-wrap; /* Allows text to wrap to the next line */
+  word-wrap: break-word; /* Ensures that long words are broken if necessary */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  overflow-y: auto; /* Allows vertical scrolling if the content is tall */
+  max-height: 600px; /* Adjust based on your preference */
+  width: 100%; /* Ensures the pre element does not exceed the container's width */
+  /* box-sizing: border-box; Includes padding and border in the element's width */
+}
+
+/* Styles for toggle buttons */
+.toggle-similar-btn {
+  font-family: Arial, sans-serif;
+  color: rgb(32, 32, 32);
+  font-size: 16px; /* Adjusted for visibility */
+  margin-top: 5px;
+  text-decoration: underline;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.toggle-similar-btn:hover {
+  color: rgb(0, 0, 0); /* Darken the color on hover */
+}
+
+.bold-originals{
+  font-weight: bold;
+  color:rgb(18, 18, 18);
+}
+
+.originals{
+  color: rgba(37, 37, 37, 0.479);
+}
+
+
+
+.header1 {
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  color:rgb(252, 252, 252)
+}
+
+.original-text-section{
+  width: 50%;
+
+}
+
+
+
+.pre {
+  white-space: pre-wrap; /* Allows text to wrap */
+  word-wrap: break-word; /* Ensure long words do not cause horizontal scrolling */
+  overflow-wrap: break-word; /* Similar to word-wrap, but more widely supported */
+}
+
+.bolds {
+  font-weight: bold;
+  font-size: 14px;
+  color: rgb(99, 4, 4);
+}
+
+/* .highlight {
+  text-decoration: underline;/* light red color */
+  /* cursor: pointer;
+  color: #ffffff;
+  text-decoration-color: #ffafaf;  */
+/* } */ 
+
+
+
+.tooltip {
+  visibility: hidden;
+  width: 140px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.highlight:hover .tooltip {
+  visibility: visible;
+}
+
+.tooltip {
+  padding: 5px 10px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  z-index: 1000;
+  display: none;
+  position: absolute; /* Position absolutely to the set coordinates */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+
+
+.bold-flagged {
+  font-weight: bold;
+  color: darkred;
+}
+
+.highlight {
+  text-decoration: underline;
+}
+
+/* Pop-up window styles */
+
+
+
+.close-button {
+  background: rgba(255, 0, 0, 0.754);
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+
+/* Modal container */
+.modal {
+  display: none; 
+  position: absolute; 
+  z-index: 999;
+  width: auto; 
+  max-width: 400px;
+}
+
+/* Modal content box */
+.modal-content {
+  background-color: #fefefe;
+  padding: 4px;
+  font-size: 14px;
+  text-align: left;
+  border: 1px solid #888;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+/* Close button */
+.close-button {
+  color: #aaa;
+  height: 2px;
+  width: 2px;
+  float: right;
+  font-size: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* Definition text */
+#definition-text {
+  color: #000; 
+}
+
+.results-container li {
+  padding: 15px 0; 
+  font-size: 16px;/* Adjust the value to increase or decrease spacing */
+}
+
+/* .circle {
+  width: 100px;
+  height: 100px;
+  background-color: orange;
+  border-radius: 50%;
+  margin-top: 50%;
+  margin-left: 50%;
+} */

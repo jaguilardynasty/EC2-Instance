@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Check a Policy</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E613TYFPSM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-E613TYFPSM');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabbed Interface</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='stylex.css') }}"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+    
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+.top-right {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+
+.about-link {
+    display: none;
+    text-decoration: none;
+    color: #fdfdfd22;
+    font-size: 15px;
+    font-weight: 100;
+    font-family: "Raleway", sans-serif;
+}
+.how-link {
+    display: none;
+    text-decoration: none;
+    color: #fdfdfd22;
+    font-size: 15px;
+    padding: 10px;
+    font-weight: 100;
+    font-family: "Raleway", sans-serif;
+}
+
+.about-link:hover {
+    text-decoration: underline;
+}
+
+.how-link:hover {
+    text-decoration: underline;
+}
+
+h1 {
+
+    font-family: "Karla", sans-serif;
+    font-weight: 100;
+    font-size: 55px;
+    color: white;
+    margin-top: 30%;
+    text-align: left;
+    width: 650px;
+    padding-left:10%;
+}
+
+/* Main container style */
+.main-container {
+    margin-top: 0%;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Input container styling */
+
+.input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    background-color: black;
+    border-radius: 20px;
+    height: 50px; /* Ensure consistent height */
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: -20%;
+    border: 1px solid rgb(213, 213, 213);
+}
+
+.dropdown {
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2), /* inner shadow */
+                0 1px 2px rgba(0, 0, 0, 0.2);
+    padding-top: 17px;
+    font-family: "Karla", sans-serif;
+    padding-left: 8px;
+    border: none;
+    width:163px;
+    color: white;
+    background-color: black;
+    font-size: 13.8px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 20 20'><polygon fill='%23ffffff' points='2,0 10,7 18,0'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 4px top 30px;
+    font-family: 'Arial';
+    border-right: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    height: 125%; /* Ensure consistent height */
+    box-sizing: border-box; /* Include padding in the height calculation */
+    line-height: normal ; /* Align text vertically */
+}
+
+.wide-textarea {
+    caret-color: white;
+    background-color: black;
+    padding: 10px 10px 0px 10px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    border-right: none;
+    outline: none;
+    resize: none; /* Prevent resizing */
+    flex-grow: 1; /* Take up the remaining space */
+    height: 100%; /* Ensure consistent height */
+    box-sizing: border-box; /* Include padding in the height calculation */
+    line-height: 30px; /* Adjust to center text vertically */
+    position: relative;
+}
+
+.wide-textarea::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -10px; /* Extend above the textarea */
+    bottom: -10px; /* Extend below the textarea */
+    width: 1px;
+    background-color: #ccc;
+}
+
+.process-btn {
+    font-family: "Karla", sans-serif;
+    font-size: 15px;
+    font-family: 'Arial';
+    cursor: pointer;
+    background-color: white;
+    color: white;
+    border: none;
+    border-left: 1px solid #ccc;
+    border-radius: 0 5px 5px 0;
+    transition: background-color 0.3s;
+    height: 100%; /* Ensure consistent height */
+    box-sizing: border-box; /* Include padding in the height calculation */
+    line-height: 30px; /* Align text vertically */
+}
+
+#copyright{
+            margin-top: 1800px;
+            position:absolute;
+            font-weight:100;
+            font-family: "Karla", sans-serif;
+
+
+        }
+
+.process-btn {
+    padding: 5px 25px;
+    margin-right: -3px;
+    font-size: 15px;
+    font-family: 'Arial';
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 0 5px 5px 0;
+    transition: background-color 0.3s;
+    height: 120%; /* Ensure consistent height */
+    box-sizing: border-box; /* Include padding in the height calculation */
+}
+.wide-textarea::placeholder {
+
+    font-style: italic;
+    color: rgb(130, 130, 130);
+}
+
+
+.process-btn:hover {
+
+    background-color: rgb(206, 202, 202);
+}
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+        }
+
+        .red_title {
+	    color: rgb(243, 73, 73);;
+        }
+
+        .error-message {
+            font-family: "Raleway", sans-serif;
+            color: rgb(253, 253, 253);
+            font-weight: 300;
+            position: absolute;
+	    bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0);
+            padding: 10px;
+            border: 1px solid rgba(255, 0, 0, 0.309);
+            border-radius: 5px;
+            z-index: 1; /* Ensure the message is on top */
+            width: 50%; /* Adjust width as needed */
+            text-align: center; /* Center the text */
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .input-container {
+            transition: height 0.5s ease; /* Smooth transition for height */
+        }
+        .inputText2{display:none;}
+
+        select,
+        textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            color: rgb(226, 226, 226);
+            background-color: #333; /* Change the background color */
+            border: 1px solid #ccc; /* Change the border color */
+            border-radius: 5px;
+            resize: none; /* Prevent manual resizing */
+            transition: height 0.5s ease; /* Smooth transition for height */
+        }
+
+        #loadingOverlay {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgb(0, 0, 0);
+            z-index: 1000;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 2s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        #quote {
+            font-family: "Raleway", sans-serif;
+            display: none;
+            font-size: 24px;
+            margin-top: 20px;
+            text-align: left;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+        #quote {
+            width: 60%;
+            text-align: left;
+        }
+
+        #quote-text {
+            font-family: "Raleway", sans-serif;
+            font-size: 24px;
+            font-weight: 300;
+            text-align: left;
+            margin: 0;
+        }
+
+        #quote-author {
+            font-family: "Raleway", sans-serif;
+            font-size: 16px;
+            margin-top: 5%;
+        }
+
+
+        #loadingBarContainer {
+            width: 50%;
+            background-color: rgb(0, 0, 0);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10%;
+        }
+
+        #loadingBar {
+            width: 0;
+            height: 50%;
+            background-color: white;
+            transition: width 18s linear;
+        }
+
+        .dropdown2 {
+               display:none;
+            }
+
+        .process-btn2 {
+            display: none;
+            }
+
+        @media (max-width: 800px) {
+	    .how-link {
+   		  display:none;
+		}
+
+	    .about-link {
+                  display:none;
+                }
+
+         #loadingBarContainer {
+            width: 75%;
+        }
+	 #quote {
+            font-family: 'Times New Roman', Times, serif;
+            display: none;
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: left;
+            opacity: 0;
+            transition: opacity 2s ease;
+            width: 80%;
+        }
+
+	  h1 {
+                padding: 3%;
+                font-family: "Karla", sans-serif;
+                font-weight: 100;
+                font-size: 34px;
+                color: white;
+                margin-top: 20%;
+                text-align: left;
+                width: 325px;
+            }
+
+            .main-container {
+                height: 80vh;
+                width: 98%;
+	        margin-bottom: 45%
+            }
+
+            .process-btn {
+                padding: 5px 15px; /* Adjust padding */
+                font-size: 12px;
+                display: none;
+	        color: rgb(243, 73, 73);
+            }
+
+            .dropdown {
+                display: none;
+                 width: 20%;
+            }
+            .process-btn2 {
+                border: none;
+                width: 100%;
+                height: 35px;
+	        padding-top: 5px;
+                margin-top: 10px;
+                border-radius: 10px;
+                background-color: rgb(233, 33, 33, 0.85);
+                color: white;
+                padding: 5px 15px; /* Adjust padding */
+                font-size: 15px;
+                display: block;
+            
+            }
+            .dropdown2 {
+                margin-bottom:80px;
+                border-radius: 10px;
+                width: 45%;
+	        padding-bottom: 5px;
+		margin-right: 55%;
+	        border: 0.5px solid white;
+	        background-color: black;
+                height: 31px;
+                display: block;
+	        color: white;
+            }
+            #loadingOverlay {
+                background-color: black;
+            }
+            .input-container {
+                height: 10px;
+            }
+
+         .error-message {
+            font-family: "Raleway", sans-serif;
+            color: rgb(253, 253, 253);
+            font-weight: 300;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0);
+            padding: 10px;
+            border: 1px solid rgba(255, 0, 0, 0.309);
+            border-radius: 5px;
+            z-index: 1; /* Ensure the message is on top */
+            width: 90%; /* Adjust width as needed */
+	    bottom:0;
+            text-align: center; /* Center the text */
+        }
+}
+     .login-link {
+            text-decoration: none;
+            color: rgba(253, 253, 253, 0.495);
+            font-size: 15px;
+            padding: 10px;
+            font-weight: 100;
+            font-family: "Raleway", sans-serif;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        
+        }
+        .predefined-options {
+           position:absolute;
+           margin-top: 660px;
+           text-align: center;
+           width: 50%;
+         }
+
+.predefined-options p {
+    font-family: "Karla", sans-serif;
+    font-size: 24px;
+    font-weight: 200;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.options-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.option-card {
+    background-color: black;
+    border: 1px solid #333;
+    border-radius: 10px;
+    width: 150px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+}
+
+.option-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.option-card span {
+    display: block;
+    font-size: 18px;
+    color: white;
+    font-weight:200;
+    font-family: 'Karla', sans-serif;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 800px) {
+    .predefined-options {
+         margin-top: 530px;
+       }
+    .predefined-options p {
+        font-size: 20px;
+    }
+    .option-card {
+        width: 150px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .option-card img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+    }
+    .option-card span {
+        font-size: 16px;
+    }
+    .options-container {
+        gap: 20px;
+    }
+}
+    </style>
+</head>
+<body>
+<title>Check a Policy</title>
+    <div class="top-right">
+        <a href="/about" class="about-link">About</a>
+        <a href="/how" class="how-link">How it works</a>
+	{% if current_user.is_authenticated %}
+            <span class="login-link">Welcome, {{ current_user.id }} | <a href="/logout" class="login-link">Logout</a></span>
+        {% else %}
+            <a href="/login" class="login-link">Login</a>
+        {% endif %}
+
+    </div>
+    <h1>Catch the <span class="red_title">red flags</span> in Terms of Service and Privacy Policies. </h1>
+  
+   
+    <div class="main-container">
+        
+        <select id="sourceType" class="dropdown2">
+            <option value="Terms">  Terms</option>
+            <option value="Privacy">Privacy Policy</option>
+            
+        </select>
+     
+    
+        <div class="input-container" id="inputContainer" style="height: 50px;">
+            <select id="sourceType" class="dropdown">
+                <option value="Terms">  Terms</option>
+                <option value="Privacy">Privacy Policy</option>
+                
+            </select>
+            <textarea id="inputText" class="wide-textarea" placeholder="Paste link to policy, or the text itself, here" style ="height: 40px"></textarea>
+            <button type="button" class="process-btn" onclick="processForm()">Check  </button>
+        </div>
+        <button type="button2" class="process-btn2" onclick="processForm()">Check  </button>
+    </div>
+      <div class="predefined-options">
+        <p>Try it with these:</p>
+        <div class="options-container">
+            <!-- Snapchat Card -->
+            <div class="option-card" data-link="https://www.linkedin.com/legal/user-agreement">
+                <img src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png#google_vignette" alt="Snapchat Logo">
+                <span>User Agreement</span>
+            </div>
+            <!-- TikTok Card -->
+            <div class="option-card" data-link="https://www.tiktok.com/legal/page/us/privacy-policy/en">
+                <img src="https://logos-world.net/wp-content/uploads/2020/04/TikTok-Logo.png" alt="TikTok Logo">
+                <span>Privacy Policy</span>
+            </div>
+                        <div class="option-card" data-link="https://policies.tinder.com/privacy/intl/en/">
+                <img src="https://logos-world.net/wp-content/uploads/2020/09/Tinder-Logo.png" alt="Snapchat Logo">
+                <span>Privacy Policy</span>
+            </div>
+            <div class="option-card" data-link="https://policies.google.com/privacy">
+                <img src="https://logos-world.net/wp-content/uploads/2020/11/Gmail-Logo.png" alt="Snapchat Logo">
+                <span>Privacy Policy</span>
+            </div>
+            <div class="option-card" data-link="https://www.airbnb.com/help/article/2908">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg" alt="Snapchat Logo">
+                <span>Terms</span>
+            </div>
+            <div class="option-card" data-link="https://bumble.com/en-us/terms">
+                <img src="https://1000logos.net/wp-content/uploads/2021/05/Bumble-logo.png" alt="Snapchat Logo">
+                <span>Terms</span>
+            </div>
+        </div>
+    </div>
+    {% if error_message %}
+        <div id="errorMessage" class="error-message">{{ error_message }}</div>
+    {% endif %}
+
+
+    <div id="loadingOverlay">
+        <div id="quote">
+            <p id="quote-text">"{{ quote_text }}"</p>
+            <p id="quote-author">- {{ quote_author }}</p>
+        </div>
+        <div id="loadingBarContainer">
+            <div id="loadingBar"></div>
+        </div>
+    </div>
+
+    <div id="copyright"><p>© beforeyouagree.com. All rights reserved.  <br><br> Contact our founder at tellus@beforeyouagree.com</p></div>
+    <script>
+	document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('inputText').focus();
+        });
+
+
+        function toggleDropdown() {
+            var dropdownMenu = document.querySelector('.dropdown-menu');
+            dropdownMenu.classList.toggle('show');
+        }
+
+	function processForm() {
+            var dropdown1 = document.querySelector(".dropdown").value;
+            var dropdown2 = document.querySelector(".dropdown2").value;
+            var screenWidth = window.innerWidth;
+
+            if (screenWidth > 800) {
+              sourceType = dropdown1;
+            } else {
+              sourceType = dropdown2;
+            }
+
+            var inputText = document.getElementById("inputText").value;
+            var formAction = sourceType === "Privacy" ? "/process_privacy" : "/process_terms";
+            
+            // Show loading screen
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            document.getElementById('loadingBar').style.width = '0';
+            setTimeout(function() {
+                document.getElementById('loadingBar').style.width = '100%';
+            }, 0);
+
+            // Display the quote with a fade-in effect
+	    setTimeout(function () {
+                quote.style.display = 'block';
+                setTimeout(function () {
+                    quote.style.opacity = '1';
+                    setTimeout(function () {
+                        loadingOverlay.style.opacity = '0';
+                        setTimeout(function () {
+                            loadingOverlay.style.display = 'none';
+                            document.getElementById('content').style.display = 'flex';
+                        }, 1000);
+                    }, 50000);
+                }, 3000);
+            }, 0);
+            // Send the form data using AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", formAction, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+
+                    if (response.status === 'success') {
+                        // After processing is done, delay and then redirect to results
+                        setTimeout(function() {
+                            window.location.href = "/show_results";
+                        }, 1000);  // 15 seconds delay before showing results
+                    } else if (response.status === 'error') {
+                        // Handle error: hide the loading screen and display the error on the homepage
+                        document.getElementById('loadingOverlay').style.display = 'none';
+                        var errorMessageElement = document.getElementById('errorMessage');
+                        if (!errorMessageElement) {
+                            errorMessageElement = document.createElement('div');
+                            errorMessageElement.id = 'errorMessage';
+                            errorMessageElement.className = 'error-message';
+                            document.body.appendChild(errorMessageElement);
+                        }
+                        errorMessageElement.textContent = response.message;
+                        errorMessageElement.style.display = 'block';
+                    }
+                }
+            };
+
+            xhr.send("inputText=" + encodeURIComponent(inputText));
+        }
+
+            
+        function adjustTextareaHeight() {
+            var textarea = document.getElementById('inputText');
+            var container = document.getElementById('inputContainer');
+            if (textarea.value.length > 100 && !textarea.value.startsWith("http")) { // Adjust the length as needed
+                textarea.style.height = "80px"; // Increase the height of the textarea
+                container.style.height = "90px"; // Adjust container height to fit content
+            } else {
+                textarea.style.height = "40px"; // Reset to initial height
+                container.style.height = "50px"; // Reset to initial height
+            }
+        }
+
+        document.getElementById('inputText').addEventListener('input', adjustTextareaHeight);
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.about-link')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Remove the error message after a certain time or on page load
+        window.onload = function() {
+            var errorMessage = document.getElementById("errorMessage");
+            if (errorMessage) {
+                setTimeout(function() {
+                    errorMessage.style.display = 'none';
+                }, 7000); // Hide after 20 seconds
+            }
+        }
+
+        // Hide loading overlay when navigating away from the page
+        window.onunload = function() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        };
+         document.querySelectorAll('.option-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                var link = this.getAttribute('data-link');
+                document.getElementById('inputText').value = link;
+                console.log('shit');
+                // Adjust the dropdown selection based on the option
+                var sourceTypeElements = document.getElementsByClassName("dropdown");
+                var sourceType = sourceTypeElements[0];
+                var sourceTypeElements2 = document.getElementsByClassName("dropdown2");
+                var sourceType2 = sourceTypeElements2[0];
+                if (link.includes('privacy')) {
+                    sourceType.value = 'Privacy';
+                    sourceType2.value = 'Privacy';
+                    console.log('poop');
+                } else {
+                    sourceType.value = 'Terms';
+                }
+
+                // Adjust textarea height if necessary
+                adjustTextareaHeight();
+
+                // Wait one second and then trigger the 'Check' button
+                setTimeout(function() {
+                    processForm();
+                }, 1000); // 1000 milliseconds = 1 second
+            });
+        });
+   </script>
+</body>
+</html>

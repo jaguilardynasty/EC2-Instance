@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylex.css') }}">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+	body {
+	   background-color: black;
+	}
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .back-arrow svg {
+            fill: white;
+        }
+
+        .speech {
+            font-family: "Raleway", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 100;
+            display: flex;
+            line-height: 30px;
+            margin-left: 15%;
+            margin-bottom: 30%;
+            margin-top: 5%;
+            color: rgb(229, 229, 229);
+            font-size: 16px;
+            width: 900px;
+        }
+
+        h1{
+            font-family: "Raleway", sans-serif;
+            font-weight: 100;
+            color: rgba(255, 255, 255, 0.984);
+            
+            font-size: 30px;
+            width: 100%;
+            margin-top: 5%;
+            text-align: center;
+          
+            
+        }
+
+        .Contact {
+	    font-weight:100;
+            font-family: "Raleway", sans-serif;
+            justify-content: center;
+            text-align: center;
+            margin-top: 40%;
+            margin-bottom: 5%;
+            font-size: 18px;
+            color: white;
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: 20%;
+            left: -300px;
+            width: 200px;
+            padding: 10px;
+            background: white;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            transform: scale(0);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            margin-left: -10px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-left-color: white;
+            border-right: 0;
+            border-top: 0;
+            margin-top: -5px;
+        }
+    </style>
+</head>
+<body>
+    <h1><p>How it works</p></h1>
+    <a href="/" class="back-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+    </a>
+    
+    <div class="speech">
+        <p> Our software uses a combination of advanced Machine Learning algorithms to optimize for the best possible results. These models are trained on thousands of Privacy Policies and Terms agreements, across a huge range of industries. <br><br>
+        Our algorithms are programmed to find the most alarming sentences for the everyday person, not those that are obvious, redundant, or unimportant. <br><br>
+        Due to the probabilistic nature of machine learning, we can't promise that every result will be perfect, however it will be the clauses with the highest probability of being important that are returned to you.</p>
+    </div>
+    <div class="Contact"> Contact us at tellus@beforeyouagree.com with your thoughts.</div>
+
+    <div id="speechBubble" class="speech-bubble">"This is a random quote!"</div>
+   
+    <script>
+        function showSpeechBubble() {
+            const speechBubble = document.getElementById('speechBubble');
+            speechBubble.style.transform = 'scale(1)';
+            setTimeout(() => {
+                speechBubble.style.transform = 'scale(0)';
+            }, 4000);
+        }
+
+        const randomTime = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
+        setTimeout(showSpeechBubble, randomTime);
+    </script>
+</body>
+</html>
